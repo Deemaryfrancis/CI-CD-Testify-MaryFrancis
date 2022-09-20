@@ -1,8 +1,12 @@
 name: Merge CI
-on: [pull-request ]
+on: [ pull_request ]
+#This is a note
 jobs: 
   Test:
-    runs-on: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
     steps:
       - uses: actions/checkout@v2
       - run: python HelloWorld.py
